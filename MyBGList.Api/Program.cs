@@ -12,11 +12,21 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwagger(c => 
+        {
+            c.RouteTemplate = "api/swagger/{documentName}/swagger.json";
+        }
+    );
+    app.UseSwaggerUI(c => {
+        c.SwaggerEndpoint("/api/swagger/v1/swagger.json", "Sample API");
+        c.RoutePrefix = "api/swagger";
+        }
+    );
 }
 
-app.UseHttpsRedirection();
+app.UsePathBase(new PathString("/api/"));
+app.UseRouting();
+//app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
