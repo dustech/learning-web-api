@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace Api.Controllers;
+namespace MyBGList.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]
